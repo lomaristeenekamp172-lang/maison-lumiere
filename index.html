@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#17110A">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32.png">
+<link rel="apple-touch-icon" href="/icons/apple-touch-icon.png">
+<link rel="manifest" href="/manifest.webmanifest">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Maison Lumière">
+<title>Maison Lumière Candles</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Jost:wght@300;400;500&family=Pinyon+Script&display=swap">
+<style>
+:root{--bg:#17110A;--bg2:#211910;--ink:#F2E9DA;--mute:#A89A84;--gold:#C2A263;--line:rgba(194,162,99,.28);--serif:'Cormorant Garamond',Georgia,'Times New Roman',serif;--sans:'Jost',system-ui,-apple-system,'Segoe UI',sans-serif;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+:root:not([data-theme="dark"]){}
+*,*::before,*::after{box-sizing:inherit}
+html{scroll-behavior:auto;scroll-padding-top:calc(64px + env(safe-area-inset-top,0px))}
+html{background:#050302}body{margin:0;background:transparent;color:var(--ink);font:300 16px/1.65 var(--sans)}
+a{color:inherit;text-decoration:none}
+:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
+header{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:rgba(10,7,4,.72);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;padding:14px 22px}
+.brand{font:500 22px/1 var(--serif);letter-spacing:.02em}
+nav{display:flex;gap:18px;font-size:13px;overflow-x:auto;white-space:nowrap}
+nav a{color:var(--mute)}nav a:hover{color:var(--gold)}
+section{padding:72px 22px;max-width:980px;margin:0 auto}
+h1,h2,h3{font-family:var(--serif);font-weight:500;margin:0;line-height:1.1}
+h1{font-size:clamp(46px,12vw,92px);letter-spacing:-.01em}
+h2{font-size:clamp(32px,7vw,48px);margin-bottom:10px}
+h3{font-size:24px}
+p{margin:0}
+.sub{color:var(--mute);margin-bottom:34px;max-width:52ch}
+.hero{display:grid;gap:36px;align-items:center;padding-top:56px}
+@media(min-width:760px){.hero{grid-template-columns:1.2fr .8fr}}
+.hero p{font:italic 400 22px/1.4 var(--serif);color:var(--mute);margin:18px 0 28px}
+.btn{display:inline-block;border:1px solid var(--gold);color:var(--gold);padding:13px 30px;font-size:14px;letter-spacing:.06em;background:none;cursor:pointer;font-family:var(--sans)}
+.btn:hover{background:var(--gold);color:var(--bg)}
+.btn.solid{background:var(--gold);color:var(--bg)}
+.cover{position:relative;max-width:none;padding:0;margin:0;background:#000}
+.cover img{display:block;width:100%;height:calc(100svh - 58px);min-height:520px;max-height:1100px;object-fit:cover;object-position:50% 30%}
+.cover .cta{display:none;position:absolute;left:0;right:0;bottom:7%;text-align:center}
+@media(min-width:900px){.cover img{object-fit:contain;background:#000}}
+/* static candle */
+.candle{width:230px;height:330px;margin:0 auto;position:relative}
+.glow{position:absolute;inset:0 0 auto 0;height:210px;background:radial-gradient(ellipse at 50% 55%,rgba(226,176,92,.28),transparent 65%)}
+.flame{position:absolute;left:50%;top:60px;width:20px;height:50px;margin-left:-10px;border-radius:50% 50% 50% 50%/62% 62% 38% 38%;background:linear-gradient(#F7E3A8,#E39B3A 70%,#7aa0c8 100%);box-shadow:0 0 28px 8px rgba(240,170,70,.45)}
+.wick{position:absolute;left:50%;top:108px;width:2px;height:20px;margin-left:-1px;background:#2a1d12}
+.jar{position:absolute;left:25px;right:25px;top:120px;bottom:0;border-radius:6px 6px 22px 22px;background:linear-gradient(90deg,#0e0a06,#2b1f14 18%,#4a3824 30%,#2a1e13 55%,#120d08);border:1px solid rgba(194,162,99,.35);box-shadow:inset 0 0 40px rgba(0,0,0,.6),0 30px 50px rgba(0,0,0,.6)}
+.wax{position:absolute;left:-1px;right:-1px;top:0;height:30px;border-radius:6px 6px 50% 50%/6px 6px 14px 14px;background:linear-gradient(#f0e3c8,#d9c7a1)}
+.label{position:absolute;left:18%;right:18%;top:78px;bottom:56px;background:#EFE3CB;color:#2a1d12;text-align:center;display:flex;flex-direction:column;justify-content:center;font-family:var(--serif)}
+.label b{font-size:21px;font-weight:600;line-height:1}.label small{font-size:11px;letter-spacing:.2em;margin-top:6px}
+/* catalogue */
+.tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:26px}
+.tab{background:none;border:1px solid var(--line);color:var(--mute);padding:8px 16px;font:400 13px var(--sans);cursor:pointer}
+.tab[aria-pressed=true]{border-color:var(--gold);color:var(--bg);background:var(--gold)}
+.grid{display:grid;gap:0;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));border-top:1px solid var(--line)}
+.scent{padding:16px 4px;border-bottom:1px solid var(--line)}
+.scent h3{font-size:22px}.scent span{font-size:13px;color:var(--mute)}
+/* quiz */
+.panel{background:rgba(12,8,5,.62);border:1px solid var(--line);padding:30px 24px}
+.panel h3{margin-bottom:18px;font-size:28px}
+.opts{display:grid;gap:10px}
+.opt{text-align:left;background:none;color:var(--ink);border:1px solid var(--line);padding:14px 16px;font:300 16px var(--sans);cursor:pointer}
+.opt:hover{border-color:var(--gold)}
+.step{font-size:13px;color:var(--mute);margin-bottom:10px}
+/* pricing */
+.prices{display:grid;gap:18px}
+@media(min-width:760px){.prices{grid-template-columns:repeat(3,1fr)}}
+.price{border:1px solid var(--line);padding:32px 24px;background:rgba(12,8,5,.6)}
+.price.feat{border-color:var(--gold)}
+.amt{font:500 54px/1 var(--serif);color:var(--gold);margin:14px 0 4px}
+.price ul{list-style:none;padding:0;margin:18px 0 24px;color:var(--mute);font-size:15px}
+.price li{padding:7px 0;border-top:1px solid var(--line)}
+.tag{font-size:13px;color:var(--gold)}
+/* rooms & collections */
+.cols{display:grid;gap:26px}
+@media(min-width:760px){.cols{grid-template-columns:repeat(3,1fr)}}
+.cols div{border-top:1px solid var(--gold);padding-top:16px}
+.cols p{color:var(--mute);font-size:15px;margin-top:8px}
+.verse{text-align:center;padding:80px 22px;border-block:1px solid var(--line);background:rgba(8,5,3,.55)}
+.verse blockquote{margin:0 auto;max-width:34ch;font:italic 400 clamp(24px,5vw,34px)/1.35 var(--serif)}
+.verse cite{display:block;margin-top:16px;color:var(--gold);font-style:normal;font-size:14px}
+/* vote */
+.vote{display:grid;gap:8px}
+.vrow{display:flex;justify-content:space-between;align-items:center;gap:12px;border:1px solid var(--line);padding:14px 16px;cursor:pointer}
+.vrow:has(input:checked){border-color:var(--gold);background:rgba(12,8,5,.65)}
+.vrow input{accent-color:#C2A263}
+.vrow em{display:block;font-style:normal;font-size:13px;color:var(--mute)}
+footer{padding:46px 22px calc(46px + env(safe-area-inset-bottom,0px));text-align:center;color:var(--mute);font-size:14px;border-top:1px solid var(--line)}
+.contact{position:relative;overflow:hidden;padding-bottom:110px}
+.chead{font-size:clamp(52px,13vw,92px);line-height:1;margin-bottom:26px}
+.script{font-family:'Pinyon Script','Snell Roundhand','Brush Script MT',cursive;font-weight:400;color:var(--gold);font-size:1.25em;line-height:1.1;display:inline-block;margin-top:-6px}
+.cintro{font-size:19px;line-height:1.6;margin-bottom:34px;max-width:34ch}
+.clist{border-left:1px solid var(--gold);padding:6px 0 6px 40px;display:grid;gap:26px;justify-items:start;margin-left:2px;position:relative;z-index:1}
+.crow{display:flex;align-items:center;gap:18px;background:none;border:0;padding:0;color:var(--ink);font:inherit;cursor:pointer;text-align:left}
+.ico{width:54px;height:54px;border:1.5px solid var(--gold);border-radius:50%;display:grid;place-items:center;color:var(--gold);flex:none}
+.crow small{display:block;font-size:14px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold)}
+.crow b{font:300 26px/1.25 var(--sans);letter-spacing:.1em;display:block}
+.crow:last-child b{font-size:20px;letter-spacing:.02em}
+.cbtn{background:var(--gold);color:#17110A;border:0;padding:20px 52px;font:400 17px var(--sans);letter-spacing:.2em;text-transform:uppercase;cursor:pointer}
+.flameart{position:absolute;right:-10px;bottom:12px;width:min(46%,300px);height:auto;opacity:.95}
+footer{display:flex;align-items:center;justify-content:center;gap:16px;border-top:1px solid var(--gold)!important}
+footer i{flex:1;max-width:90px;height:1px;background:var(--gold)}
+footer span{text-align:center;letter-spacing:.04em}
+@media(max-width:560px){footer i{max-width:24px}}
+.view{display:none}.view.on{display:block}
+header{justify-content:center;position:sticky}
+.back{position:absolute;left:12px;top:50%;transform:translateY(-50%);background:none;border:0;color:var(--gold);padding:8px;cursor:pointer}
+.back[hidden]{display:none}
+.vt{display:none}
+.cover img{height:56svh;min-height:380px;max-height:640px;object-position:50% 35%}
+@media(min-width:900px){.cover img{object-fit:contain}}
+.cover{margin:0 auto}
+.tiles{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;padding:28px 22px 12px;max-width:640px;margin:0 auto}
+@media(min-width:620px){.tiles{grid-template-columns:repeat(4,1fr);max-width:900px}}
+.tile{display:flex;flex-direction:column;align-items:center;gap:12px;padding:24px 8px;background:rgba(12,8,5,.62);border:1px solid var(--line);color:var(--gold);cursor:pointer;font:400 15px var(--sans);letter-spacing:.03em}
+.tile span{color:var(--ink)}
+.tile:hover{border-color:var(--gold)}
+.ph{margin:0}.ph img{width:100%;display:block;border:1px solid var(--line)}
+main.view.on+section,section.view{min-height:60svh}
+.gal{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:10px}
+.gal .ph{position:relative}.gal img{aspect-ratio:1/1;object-fit:cover}
+.del{position:absolute;right:8px;bottom:8px;background:rgba(10,7,4,.85);color:var(--ink);border:1px solid var(--gold);padding:8px 14px;font:400 13px var(--sans);cursor:pointer}
+.own{margin-top:36px;padding-top:20px;border-top:1px solid var(--line)}
+.own .lnk{background:none;border:0;color:var(--mute);font:300 14px var(--sans);cursor:pointer;padding:6px 0;text-decoration:underline}
+.own input[type=password]{width:100%;max-width:320px;padding:13px 14px;background:rgba(12,8,5,.7);border:1px solid var(--line);color:var(--ink);font:300 16px var(--sans);margin:10px 0}
+.own .row{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-top:10px}
+.vh{position:absolute;width:1px;height:1px;opacity:0;overflow:hidden;clip:rect(0 0 0 0)}
+.own .msg{color:var(--gold);font-size:14px;margin-top:10px}
+.fold{display:block;width:100%;text-align:left;background:none;border:0;border-bottom:1px solid var(--line);color:var(--ink);cursor:pointer;font:inherit}
+.fold:hover h3{color:var(--gold)}
+.hide{display:none}
+.bgfix{position:fixed;inset:-20px;z-index:-1;background-size:cover;background-position:50% 88%;filter:blur(6px) brightness(.5) saturate(1.1);transform:translateZ(0)}
+.bgfix::after{content:"";position:absolute;inset:0;background:linear-gradient(rgba(0,0,0,.55),rgba(0,0,0,.25) 45%,rgba(0,0,0,.6))}
+</style>
+</head>
+<body>
+<div class="bgfix" id="bgfix" aria-hidden="true"></div>
+<header><button class="back" id="back" aria-label="Back to home" hidden><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"/></svg></button><a class="brand" href="#" data-go="home">Maison Lumière</a><span class="vt" id="vt"></span></header>
+
+<main id="home" class="view on"><section class="cover"><img src="assets/cover.jpg" alt="Maison Lumière luxury candle lit on a black marble table. More than a candle, it's a feeling."></section><section class="tiles" aria-label="Menu"><button class="tile" data-go="shop"><svg viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 3h6v3H9z"/><path d="M7 6h10l1 4v10a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V10z"/><path d="M6.5 13h11"/></svg><span>Scents</span></button><button class="tile" data-go="quiz"><svg viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M9.5 9.5a2.5 2.5 0 1 1 3.5 2.3c-.7.4-1 .9-1 1.7"/><circle cx="12" cy="17" r=".5"/></svg><span>Scent quiz</span></button><button class="tile" data-go="pricing"><svg viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h8l8 8-8 8-8-8z"/><circle cx="8.5" cy="8.5" r="1"/></svg><span>Pricing</span></button><button class="tile" data-go="rooms"><svg viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 11l9-7 9 7"/><path d="M5 10v10h14V10"/><path d="M10 20v-6h4v6"/></svg><span>Rooms</span></button><button class="tile" data-go="special"><svg viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="9" width="16" height="11" rx="1"/><path d="M3 9h18v3H3zM12 9v11"/><path d="M12 9c-2-4-6-3-5 0M12 9c2-4 6-3 5 0"/></svg><span>Collections</span></button><button class="tile" data-go="vote"><svg viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 13l4 4L19 6"/><rect x="3" y="3" width="18" height="18" rx="2"/></svg><span>Vote</span></button><button class="tile" data-go="photos"><svg viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="15" rx="2"/><circle cx="12" cy="12.5" r="3.5"/><path d="M8 5l1.5-2h5L16 5"/></svg><span>Photos</span></button><button class="tile" data-go="contact"><svg viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"/></svg><span>Contact</span></button></section><div class="verse"><blockquote>"I am the light of the world. Whoever follows me will never walk in darkness, but will have the light of life."<cite>John 8:12</cite></blockquote></div></main>
+
+<section id="shop" class="view">
+<h2>Scent catalogue</h2>
+<p class="sub">29 scents, poured to order. Custom combinations are welcome.</p>
+<div class="tabs" id="tabs" role="group" aria-label="Filter scents"></div>
+<div class="grid" id="grid"></div>
+</section>
+
+
+<section id="quiz" class="view">
+<h2>Find your scent</h2>
+<p class="sub">Four questions to match you with a candle.</p>
+<div class="panel" id="quizBox" aria-live="polite"></div>
+</section>
+
+<section id="pricing" class="view">
+<h2>Pricing</h2>
+<p class="sub">Every size comes in all 29 scents, with premium fragrance oil.</p>
+<div class="prices">
+<div class="price"><h3>Petite</h3><div class="tag">250 ml · 20–25 hours</div><div class="amt">R50</div><ul><li>Single or double wick</li><li>Premium fragrance oil</li><li>All 29 scents</li></ul><a class="btn" href="tel:0720972699">Order Petite</a></div>
+<div class="price feat"><h3>Maison</h3><div class="tag">350 ml · 35–45 hours · Most popular</div><div class="amt">R75</div><ul><li>Double or triple wick</li><li>Premium fragrance oil</li><li>All 29 scents</li></ul><a class="btn solid" href="tel:0720972699">Order Maison</a></div>
+<div class="price"><h3>Lumière</h3><div class="tag">500 ml · 55–65 hours</div><div class="amt">R100</div><ul><li>Triple wick</li><li>Premium fragrance oil</li><li>All 29 scents</li></ul><a class="btn" href="tel:0720972699">Order Lumière</a></div>
+</div>
+</section>
+
+<section id="rooms" class="view">
+<h2>Styling by room</h2>
+<p class="sub">Three suggestions for every space in your home.</p>
+<div class="cols">
+<div><h3>Bedroom</h3><p>Calm, restful and romantic. Iced Lavender Latte, Cherry Blossoms, Baby Powder.</p></div>
+<div><h3>Bathroom spa</h3><p>Relaxing and refreshing. Lemon Grass, Cherry, Baby Powder.</p></div>
+<div><h3>Living room</h3><p>Warm and welcoming. Pumpkin Spice, Milk &amp; Cookies, Caramel Apple.</p></div>
+</div>
+</section>
+
+<section id="special" class="view">
+<h2>Special collections</h2>
+<p class="sub">Made for gifting and celebrating.</p>
+<div class="cols">
+<div><h3>Baby shower reveal</h3><p>A custom colour reveal. Light the candle to discover the gender.</p></div>
+<div><h3>Seasonal</h3><p>Christmas Mystery, Pumpkin Spice and limited festive pours.</p></div>
+<div><h3>Candle mystery box</h3><p>A curated selection of surprises, ready to give.</p></div>
+</div>
+</section>
+
+<section id="vote" class="view">
+<h2>Choose our next candle</h2>
+<p class="sub">Pick the scent you most want us to pour next. We announce the winner on Instagram.</p>
+<div class="vote" id="voteList"></div>
+<p style="margin-top:20px"><button class="btn solid" id="voteBtn">Cast your vote</button></p>
+<p id="voteMsg" class="sub hide" style="margin-top:16px;margin-bottom:0"></p>
+</section>
+
+<section id="contact" class="view contact">
+<h2 class="chead">Contact and<br><span class="script">orders</span></h2>
+<p class="cintro">Lomari Steenekamp, founder and candle artisan.<br>Standerton, Mpumalanga.</p>
+<div class="clist">
+<a class="crow" href="tel:0720972699"><span class="ico"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"/></svg></span><span><small>Call</small><b>072 097 2699</b></span></a>
+<button class="crow" type="button" data-copy><span class="ico"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="11" height="11" rx="1.5"/><path d="M15 9V5.5A1.5 1.5 0 0 0 13.5 4h-8A1.5 1.5 0 0 0 4 5.5v8A1.5 1.5 0 0 0 5.5 15H9"/></svg></span><span><small>Copy number</small></span></button>
+<button class="cbtn" type="button" data-copy>Copy number</button>
+<a class="crow" href="https://www.instagram.com/maisonlumierecandles"><span class="ico"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="3.5" width="17" height="17" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r=".6"/></svg></span><span><small>Instagram</small><b>Maison Lumière Candles</b></span></a>
+</div>
+<svg class="flameart" viewBox="0 0 400 340" fill="none" stroke="#C2A263" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M250 8C235 70 200 100 192 160c-4 38 26 62 56 62 36 0 62-34 56-76-4-34-36-70-54-138z" transform="translate(-20 20)"/><path d="M250 120c-30 40-40 70-30 100" transform="translate(-20 20) translate(8 -10)"/><path d="M10 330C110 270 190 250 250 250s100 10 150 22" transform="translate(0 -20)"/></svg>
+</section>
+
+<section id="photos" class="view"><h2>Photos</h2><p class="sub">A glimpse of our hand-poured candles.</p><figure class="ph"><img src="assets/cover.jpg" alt="Maison Lumière candle on black marble"></figure><div class="gal" id="gal"></div><div class="own" id="own"></div></section>
+<footer><i></i><span>Maison Lumière Candles · Hand-poured in Standerton</span><i></i></footer>
+
+<script>
+document.getElementById("bgfix").style.backgroundImage="url("+document.querySelector(".cover img").src+")";
+const S={
+"Top voted":[["Gummy Bear","Sweet, fruity and playful"],["Vanilla Blackberry","Creamy vanilla with juicy blackberry"],["Donuts","Warm, sugary bakery goodness"],["Coffee","Rich, freshly brewed and cosy"],["Cakes","Fresh-baked vanilla sponge"],["Caramel Pudding","Silky custard with golden caramel"],["Coke","Fizzy, sweet and nostalgic"],["Fruit Carnival","A bright, juicy mix of fruits"],["Watermelon","Crisp, cool and refreshing"],["Peppermint","Cool, crisp and festive"]],
+"Latte collection":[["Iced Coffee Latte",""],["Iced Vanilla Latte",""],["Iced Strawberry Latte",""],["Iced Lavender Latte",""],["Iced Peach Latte",""]],
+"Seasonal":[],
+"Baby shower & party":[["Baby Powder",""],["Bubblegum",""],["Candy",""],["Cherry",""]],
+"Sweet treats":[["Blueberry Waffles",""],["Milk & Cookies",""],["Lemon Meringue Pie",""],["Chocolate Bliss",""]],
+"Floral & fresh":[["Cherry Blossoms",""],["Lemon Grass",""]]};
+const tabs=document.getElementById('tabs'),grid=document.getElementById('grid');
+const SEAS={"Valentine's Day":[["Rose",""],["Black Orchid",""],["White Musk",""],["Bluebell",""],["L'aube Rosa",""]],
+"Mother's Day":[["Coconut & Vanilla",""],["Jasmine",""],["Champagne Grapes & Roses",""],["Parma Violet",""]],
+"Christmas":[["Cinnamon Gingerbread",""],["Pine Cones",""],["Candy Gifts",""],["Christmas Mystery","A surprise scent, chosen at random"]],
+"More seasonal":[["Pumpkin Spice",""],["Caramel Apple",""],["Candy Canes",""]]};
+const FN=Object.keys(SEAS);
+const esc=s=>s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/'/g,'&#39;');
+const row=(n,d,c)=>`<div class="scent"><h3>${esc(n)}</h3><span>${esc(d||c)}</span></div>`;
+function show(cat,fi){
+ [...tabs.children].forEach(b=>b.setAttribute('aria-pressed',b.dataset.c===cat));
+ if(cat==='Seasonal'){
+  if(fi==null){grid.innerHTML=FN.map((n,i)=>`<button class="scent fold" data-f="${i}"><h3>${esc(n)}</h3><span>${SEAS[n].length} scents</span></button>`).join('');return}
+  const n=FN[fi];
+  grid.innerHTML=`<button class="scent fold" data-f="-1" style="grid-column:1/-1"><span>&lsaquo; Seasonal folders</span><h3>${esc(n)}</h3></button>`+SEAS[n].map(([a,d])=>row(a,d,n)).join('');return}
+ const all=cat==='All';
+ const list=all?Object.entries(S).filter(([k])=>k!=='Seasonal'):[[cat,S[cat]]];
+ let out=list.flatMap(([c,a])=>a.map(([n,d])=>row(n,d,c))).join('');
+ if(all)out+=FN.flatMap(f=>SEAS[f].map(([n,d])=>row(n,d,f))).join('');
+ grid.innerHTML=out;
+}
+grid.addEventListener('click',e=>{const b=e.target.closest('[data-f]');if(b){const i=+b.dataset.f;show('Seasonal',i<0?null:i)}});
+['All',...Object.keys(S)].forEach(c=>{const b=document.createElement('button');b.className='tab';b.textContent=c;b.dataset.c=c;b.onclick=()=>show(c);tabs.appendChild(b)});
+show('All');
+
+const Q=[
+["Where will it burn?",["Bedroom","Bathroom","Living room","Gift for someone"]],
+["Pick a mood.",["Calm and restful","Fresh and clean","Warm and cosy","Sweet and playful"]],
+["Your ideal treat?",["Iced latte","Fresh fruit","Baked goods","Floral tea"]],
+["Which season feels like you?",["Spring bloom","Summer sun","Autumn spice","Winter festive"]]];
+const R={calm:["Iced Lavender Latte","Soft lavender over cool, creamy coffee. Made for slow evenings."],fresh:["Lemon Grass","Clean, bright and spa-like."],warm:["Pumpkin Spice","Warm spice that makes any room feel welcoming."],sweet:["Gummy Bear","Sweet, fruity and playful."]};
+let qi=0,sc=[];
+const box=document.getElementById('quizBox');
+function map(a,i){return [["calm","fresh","warm","sweet"],["calm","fresh","warm","sweet"],["calm","fresh","warm","sweet"],["calm","fresh","warm","sweet"]][i][a]}
+function renderQ(){
+ if(qi>=Q.length){
+  const t={};sc.forEach(k=>t[k]=(t[k]||0)+1);
+  const k=Object.keys(t).sort((a,b)=>t[b]-t[a])[0],r=R[k];
+  box.innerHTML=`<div class="step">Your match</div><h3>${r[0]}</h3><p class="sub">${r[1]}</p><a class="btn solid" href="tel:0720972699">Order this scent</a> <button class="btn" id="again">Take again</button>`;
+  document.getElementById('again').onclick=()=>{qi=0;sc=[];renderQ()};return;
+ }
+ box.innerHTML=`<div class="step">Question ${qi+1} of 4</div><h3>${Q[qi][0]}</h3><div class="opts">${Q[qi][1].map((o,i)=>`<button class="opt" data-i="${i}">${o}</button>`).join('')}</div>`;
+ box.querySelectorAll('.opt').forEach(b=>b.onclick=()=>{sc.push(map(+b.dataset.i,qi));qi++;renderQ()});
+}
+renderQ();
+
+const vl=document.getElementById('voteList');
+S["Top voted"].forEach(([n,d],i)=>{vl.insertAdjacentHTML('beforeend',`<label class="vrow"><span>${n}<em>${d}</em></span><input type="radio" name="v" value="${n}"></label>`)});
+document.getElementById('voteBtn').onclick=()=>{
+ const m=document.getElementById('voteMsg'),c=vl.querySelector('input:checked');
+ m.classList.remove('hide');m.textContent=c?`Thank you. Your vote for ${c.value} is in. We announce the winner on Instagram.`:'Choose a scent before you vote.';
+};
+document.querySelectorAll('[data-copy]').forEach(b=>b.onclick=async()=>{const t=b.querySelector('small')||b,o=t.textContent;try{await navigator.clipboard.writeText('0720972699');t.textContent='Copied'}catch(x){t.textContent='0720972699'}setTimeout(()=>t.textContent=o,1800)});
+
+const V=[...document.querySelectorAll('.view')],bk=document.getElementById('back');
+function go(id){V.forEach(v=>v.classList.toggle('on',v.id===id));bk.hidden=id==='home';window.scrollTo(0,0)}
+document.addEventListener('click',e=>{const t=e.target.closest('[data-go]');if(t){e.preventDefault();go(t.dataset.go)}});
+bk.onclick=()=>go('home');
+
+let PH=[],CODE='',unlocked=false,msg='',busy=false,formOpen=false;
+const API='/.netlify/functions/photos';
+const gal=document.getElementById('gal'),own=document.getElementById('own');
+async function load(){try{const r=await fetch(API);PH=(await r.json()).ids||[]}catch(e){PH=[]}renderGal()}
+function renderGal(){gal.innerHTML=PH.map(id=>`<figure class="ph"><img src="${API}?id=${encodeURIComponent(id)}" loading="lazy" alt="Maison Lumière candle photo">${unlocked?`<button class="del" data-del="${id}">Delete</button>`:''}</figure>`).join('')}
+function renderOwn(){
+ const m=msg?`<div class="msg" role="status">${msg}</div>`:'';
+ if(unlocked){own.innerHTML=`<p class="sub" style="margin-bottom:6px">Owner mode. Photos you add are visible to everyone.</p><div class="row"><label class="btn solid" for="pf">Add photos</label><input id="pf" class="vh" type="file" accept="image/*" multiple><button class="btn" id="lock">Lock</button></div>${m}`;
+  document.getElementById('lock').onclick=()=>{unlocked=false;CODE='';msg='';formOpen=false;renderGal();renderOwn()};
+  document.getElementById('pf').onchange=e=>{const a=[...e.target.files];e.target.value='';addFiles(a)};return}
+ if(!formOpen){own.innerHTML=`<button class="lnk" id="open">Owner access</button>${m}`;document.getElementById('open').onclick=()=>{formOpen=true;msg='';renderOwn()};return}
+ own.innerHTML=`<p class="sub" style="margin-bottom:0">Enter your owner code to add or delete photos.</p><input type="password" id="code" autocomplete="off" aria-label="Owner code"><div class="row"><button class="btn solid" id="go">Unlock</button><button class="btn" id="cx">Cancel</button></div>${m}`;
+ document.getElementById('cx').onclick=()=>{formOpen=false;msg='';renderOwn()};
+ document.getElementById('go').onclick=async()=>{
+  const v=document.getElementById('code').value;
+  try{const r=await fetch(API+'?action=check',{method:'POST',headers:{'x-owner-code':v}});
+   if(r.ok){CODE=v;unlocked=true;msg='';renderGal();renderOwn()}else{msg='Incorrect code.';renderOwn()}}
+  catch(e){msg='Could not reach the server.';renderOwn()}};
+}
+function shrink(f){return new Promise((res,rej)=>{const u=URL.createObjectURL(f),i=new Image();i.onload=()=>{const s=Math.min(1,1000/Math.max(i.width,i.height)),c=document.createElement('canvas');c.width=Math.round(i.width*s);c.height=Math.round(i.height*s);c.getContext('2d').drawImage(i,0,0,c.width,c.height);URL.revokeObjectURL(u);res(c.toDataURL('image/jpeg',.8).split(',')[1])};i.onerror=rej;i.src=u})}
+async function addFiles(fs){
+ if(!fs.length||busy)return;busy=true;msg='Adding photos...';renderOwn();
+ try{for(const f of fs){const data=await shrink(f);
+   const r=await fetch(API,{method:'POST',headers:{'x-owner-code':CODE,'content-type':'application/json'},body:JSON.stringify({data})});
+   if(!r.ok)throw new Error('save');PH.push((await r.json()).id)}
+  msg='Photos added.'}catch(e){msg='Could not save a photo. Try a JPG or PNG.'}
+ busy=false;renderGal();renderOwn();
+}
+let delT=null;
+gal.addEventListener('click',async e=>{const b=e.target.closest('[data-del]');if(!b||!unlocked)return;
+ if(b.dataset.arm!=='1'){b.dataset.arm='1';b.textContent='Tap to confirm';clearTimeout(delT);delT=setTimeout(()=>{b.dataset.arm='';b.textContent='Delete'},3000);return}
+ try{const r=await fetch(API+'?id='+encodeURIComponent(b.dataset.del),{method:'DELETE',headers:{'x-owner-code':CODE}});
+  if(!r.ok)throw 0;PH=PH.filter(p=>p!==b.dataset.del);msg='Photo deleted.'}catch(x){msg='Could not delete.'}
+ renderGal();renderOwn()});
+renderOwn();load();
+</script>
+</body>
+</html>
